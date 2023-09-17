@@ -61,7 +61,7 @@ class MyHomePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: imageLink.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -71,6 +71,10 @@ class MyHomePage extends StatelessWidget {
                     ),
                     itemBuilder: (context, index) {
                       return GridTile(
+                        footer: Container(color: Colors.white,child: Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Center(child: Text("Photo $index",style: const TextStyle(fontSize: 20),)),
+                        ),),
                         child: GestureDetector(
                           onTap: () {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -88,10 +92,6 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        footer: Container(color: Colors.white,child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Center(child: Text("Photo $index",style: TextStyle(fontSize: 20),)),
-                        ),),
                       );
                     },
                   ),
@@ -101,7 +101,7 @@ class MyHomePage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: 3,
                   shrinkWrap: true,
-                   physics: NeverScrollableScrollPhysics(),
+                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder:  (context, iindex) =>  ListTile(
                     leading: CircleAvatar(backgroundImage:NetworkImage(imageLink[iindex]),),
                   title: Text('Photo ${iindex+1}'),
@@ -109,6 +109,7 @@ class MyHomePage extends StatelessWidget {
                 ),
                          ),
               ),
+              const SizedBox(height: 10,),
               FloatingActionButton(
               onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
